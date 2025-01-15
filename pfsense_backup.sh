@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define variables
+# Variables
 REMOTE_HOST=""
 REMOTE_USER=""
 REMOTE_PASSWORD=""
