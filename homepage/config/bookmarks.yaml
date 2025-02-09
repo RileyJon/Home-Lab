@@ -1,0 +1,14 @@
+---
+- Links:
+  - Github:
+    - icon: si-github-#FFFFFF
+      href: https://github.com/RileyJon/Home-Lab
+  - Cloudflare:
+    - icon: cloudflare.png
+      href: https://dash.cloudflare.com
+  - Resume Website:
+    - href: https://www.rjserver.net
+- Home Lab:
+  - GNS3:
+    - icon: gns3.png
+      href: http://10.0.254.1

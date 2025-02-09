@@ -1,0 +1,111 @@
+---
+- Networking:
+    - Gateway:
+        href: http://10.0.100.254
+        icon: pfsense.png
+        description: RJ01FW100
+        siteMonitor: http://10.0.100.254
+        widget:
+            type: pfsense
+            url: http://10.0.100.254
+            username: {{HOMEPAGE_VAR_PF_USERNAME}}
+            password: {{HOMEPAGE_VAR_PF_PASSWORD}}
+            wan: bnxt0
+            version: 2
+    - Core Switch:
+        href: http://10.0.255.2
+        icon: cisco.png
+        description: RJ01SW100
+        siteMonitor: http://10.0.255.2
+    - Wireless:
+        href: http://10.0.20.3
+        icon: cisco.png
+        description: RJ01AP100
+        siteMonitor: http://10.0.20.3
+- Infrastructure and Data:
+    - Proxmox:
+        href: https://rj01pve100.rjserver.net:8006
+        icon: proxmox.png
+        description: RJ01PVE Cluster
+        siteMonitor: https://10.0.255.100:8006
+        widget:
+            type: proxmox
+            url: https://10.0.255.100:8006
+            username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+            password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+    - TrueNAS Core:
+        href: https://10.0.250.1
+        icon: truenas-scale.png
+        description: RJ01NAS100
+        siteMonitor: https://10.0.250.1
+        widget:
+            type: truenas
+            url: https://10.0.250.1
+            username: {{HOMEPAGE_VAR_TRUENAS_USERNAME}}
+            password: {{HOMEPAGE_VAR_TRUENAS_PASSWORD}}
+            enablePools: true
+            nasType: core
+- Monitoring:
+    - UptimeKuma:
+        href: http://10.0.100.6:3001
+        description: RJ01VM06-Kuma
+        icon: uptime-kuma.png
+        widget:
+            type: uptimekuma
+            url: http://10.0.100.6:3001
+            slug: {{HOMEPAGE_VAR_KUMA}}
+    - Home Assistant:
+        href: http://10.0.100.5:8123
+        icon: home-assistant.png
+        description: RJ01VM05-HA
+        widget:
+            type: homeassistant
+            url: http://10.0.100.5:8123
+            key: {{HOMEPAGE_VAR_HA_KEY}}
+            custom:
+- Cloud Services:
+    - Cloudflare PVE Tunnel:
+        href: https://one.dash.cloudflare.com/
+        description: Proxmox Tunnel
+        icon: cloudflare.png
+        widget:
+            type: cloudflared
+            accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}} # from zero trust dashboard url e.g. https://one.dash.cloudflar>
+            tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_PVE}} # found in tunnels dashboard under the tunnel name
+            key: {{HOMEPAGE_VAR_CLOUDFLARE_KEY}} # api token with `Account.Cloudflare Tunnel:Read` https://das>
+    - Cloudflare Kuma Tunnel:
+        href: https://one.dash.cloudflare.com/
+        description: Uptime Kuma Monitoring
+        icon: cloudflare.png
+        widget:
+            type: cloudflared
+            accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}} # from zero trust dashboard url e.g. https://one.dash.cloudflar>
+            tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_KUMA}} # found in tunnels dashboard under the tunnel name
+            key: {{HOMEPAGE_VAR_CLOUDFLARE_KEY}} # api token with `Account.Cloudflare Tunnel:Read` https://das>
+    - Cloudflare Guacamole Tunnel:
+        href: https://one.dash.cloudflare.com/
+        description: Remote Access Services
+        icon: cloudflare.png
+        widget:
+            type: cloudflared
+            accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}} # from zero trust dashboard url e.g. https://one.dash.cloudflar>
+            tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_GUACAMOLE}} # found in tunnels dashboard under the tunnel name
+            key: {{HOMEPAGE_VAR_CLOUDFLARE_KEY}} # api token with `Account.Cloudflare Tunnel:Read` https://das>
+    - Cloudflare Resume Tunnel:
+        href: https://one.dash.cloudflare.com/
+        description: Resume Webpage
+        icon: cloudflare.png
+        widget:
+            type: cloudflared
+            accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}} # from zero trust dashboard url e.g. https://one.dash.cloudflar>
+            tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_RESUME}} # found in tunnels dashboard under the tunnel name
+            key: {{HOMEPAGE_VAR_CLOUDFLARE_KEY}} # api token with `Account.Cloudflare Tunnel:Read` https://das>
+    - Cloudflare Deny Tunnel:
+        href: https://one.dash.cloudflare.com/
+        description: Deny Webpage
+        icon: cloudflare.png
+        widget:
+            type: cloudflared
+            accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNTID}} # from zero trust dashboard url e.g. https://one.dash.cloudflar>
+            tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_TUNNEL_DENY}} # found in tunnels dashboard under the tunnel name
+            key: {{HOMEPAGE_VAR_CLOUDFLARE_KEY}} # api token with `Account.Cloudflare Tunnel:Read` https://das>
