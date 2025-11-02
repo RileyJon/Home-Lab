@@ -1,0 +1,27 @@
+GNS3 VM Setup/Configuration
+
+VM Setup/Configuration - Portnox
+
+1.) Deploy OVA/Image from GNS3 Website (VMware ESXi)
+2.) Configure Network Hardware as following
+     net0 - GNS3 Management VLAN (254)
+     net1 - Outside Internet GNS3 VLAN (150)
+     net2 - Inside Private GNS3 VLAN (151)
+3.) Configure /etc/netplan/90_gns3vm_static_netcfg.yaml
+     eth0:
+        dhcp4: no
+        addresses
+        - 10.0.254.1/24
+        gateway4: 10.0.254.254
+        nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
+
+     eth1:
+        dhcp4: yes
+     eth2:
+        dhcp4: yes
+
+4.) Test in Web or Client each Interface
+      eth0 = eth0
+      eth1 = eth1
+      eth2 = eth2
