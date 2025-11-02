@@ -1,0 +1,20 @@
+1.) Configure another PA-VM
+    Same Setup, but different IP
+2.) Configure HA Interfaces
+      Network > Interfaces > Add
+      Type = HA
+3.) Connect Interfaces in GNS3
+4.) Enable HA + Set Active/Passive + Set Election Setup
+        High Availability >   General  > Setup
+              Enable HA + Peer Address (Main/Backup)
+              Mode: Active/Passive
+        High Availability >   General  > Active/Passive
+            Passive Link State: Shutdown, 1 Minute Hold Down Time
+        High Availability >   General  > Election Settings
+            Priority - 100 on Primary, 200 on Backup
+            Preemmptive: Enable 
+5.) Setup Interfaces for Control/Data Links
+        HA1 - set physical port, address for peer, netmask
+        HA2 - Enable Session Sync, No IP, Transport: Ethernet
+6.) Versions should Match Under the HA Tab on the Dashboard
+7.) Sync Primary to Backup
