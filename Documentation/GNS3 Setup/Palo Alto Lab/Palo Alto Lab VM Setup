@@ -1,0 +1,17 @@
+1.) Download PA-VM qcow2 File + Appliance File
+  https://gns3.com/marketplace/appliances/pa-vm
+2.) Once Installed (PA-VM 11.0.0), Create Lab File
+    Make sure VM has atleast
+      5632  MB for RAM
+      2 vCPUs
+      Disk Interface: Virtio
+      All Adapater: Set to Paravirtualized Network I/O or Intel Gigabit
+      Advanced - Additional Settings: Options --> -smp 2 -cpu host
+3.) Connect Management to eth0 (10.0.254.0/24) Cloud
+4.) Will take a bit until PA-VM Login is prompted (Up to 20 minutes)
+5.) Open Console and login: admin/admin
+6.) Set MGMT IP + DNS
+    configure set deviceconfig system ip-address 10.0.254.10 netmask 255.255.255.0 default-gateway 10.0.254.1 type static set deviceconfig system dns-setting servers primary 10.0.100.1 secondary 10.0.100.2 commit
+7.) Connect Other interfaces once webconsole is available at the mgmt IP
+
+
