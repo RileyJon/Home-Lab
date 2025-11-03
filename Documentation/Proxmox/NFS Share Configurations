@@ -1,0 +1,15 @@
+1.) Create Dataset on TrueNAS Server
+    a.) Go to Main Pool "RJ01NAS100_POOL"
+    b.) Select the Three dots on the right side and select "Add Dataset"
+    c.) Name PVE_BACKUP_Storage and PVE_VM_STORAGE
+2.) Create NFS Share
+    a.) Go to Sharing > NFS
+    b.) Select "/mnt/RJ01NAS100_POOL/PVE_BACKUP_STORAGE" and "/mnt/RJ01NAS100_POOL/PVE_VM_STORAGE"
+3.) Go to Proxmox > Datacenter > Storage
+    a.) Add an NFS share
+    b.) ID "Name", Server: "10.0.250.1"
+    c.) Export: NFS Share
+    d.) Select Content Stored Here
+    e.) Allow for All Nodes
+
+    
