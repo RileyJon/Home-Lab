@@ -1,0 +1,15 @@
+1.) Configure API Token in Cloudflare for DNS Changes
+    a.) Go to Accounts > Manage Account > Account API Tokens
+    b.) Creatre Token with "DNS Zone Editing Permissions"
+        All zones - DNS Settings:Edit, DNS Settings:Read, Zone:Read, DNS:Edit
+
+2.) Configure Cloudflare ACME DNS Plugin
+    a.) Go to Datacenter > ACME
+    b.) Add Plugin, Cloudflare
+    c.) Add necessary API Information
+
+3.) Configure Certificate on Node
+    a.) Go to Node > Certificates
+    b.) Use Cloudflare Account
+    c.) Challenge Type: DNS, Plugin: Cloudflare-DNS, Domain: RJ01PVE100.rjserver.net
+    d.) Order Certs Now
