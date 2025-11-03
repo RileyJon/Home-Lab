@@ -1,0 +1,31 @@
+Proxmox Node Setup + Network Configuration
+
+1.) Download Proxmox VE ISO + Create Installation Media
+2.) Boot Node into Setup
+3.) Configure the network on the MGMT until the web console is functional
+    10.0.255.x/24, 10.0.255.254, VLAN 255
+4.) Log into Web Console
+5.) Create VLAN Interface for Manageemnt
+    Name: VLAN 255
+    Type: Linux VLAN
+    IPv4: 10.0.255.x/24
+    Gateway: 10.0.255.254
+    Autostart: Enabled
+    VLAN Raw Device: Physical NIC in Use
+    VLAN Tag: 255
+6.) Configure Physical NIC
+    No IP, Gateway
+    Autostart: Enabled
+7.) Configure Linux Bridge
+    Name: vmbr0
+    Type: Linux Bridge
+    No IP, Gateway
+    Autostart: Enabled
+    VLAN Aware: Enabled
+    Bridge Ports: Physical NIC
+    VLAN IDs: 2-4094 or Trunked VLANs
+8.) Apply Configuration and Set Switchport to Trunked on Network Switch or Device
+    
+    
+    
+    
