@@ -1,0 +1,40 @@
+Azure RJServer Configuration
+
+RG, VNets, and Peering
+
+1.) Create Resource Group for Azure Resoruces
+
+    Name: rg-prod-rjserver
+
+2.) Create VNets
+
+    2a.) Create Hub 
+            
+            Name: vnet-prod-rjserver-hub
+            Address Space: 10.1.0.0/16
+            Subnets: Subnet-1A (10.1.1.0/24)
+
+    2b.) Create Spokes (2-4)
+            
+            Name: vnet-prod-rjserver-spoke-#
+            Address Space: 10.#.0.0/16
+            Subnets: Subnet-1A (10.#.1.0/24)
+            
+3.) Peer VNets
+    
+    3a.) Go to vnet-prod-rjserver-hub, Settings, Peerings, Add
+    
+    3b.) Peering Link Name: vnet-prod-rjserver-hub-to-vnet-prod-rjserver-spoke-#
+    
+    3c.) Peering Type: VNet
+    
+    3d.) Allow the peered virtual network to access vnet-prod-rjserver-hub - Enabled    
+    
+    3e.) Allow the peered virtual network to receive forwarded traffic from 'vnet-prod-rjserver-hub' - Enabled
+    
+    3f.) Enable the peered virtual network to use 'vnet-prod-rjserver-hub's' remote gateway or route server - Enabled 
+    
+        Note: This will allow the spokes to communicate via a vgw in the hub vnet
+        
+    3g.) Peering Link Name (Other Side): vnet-prod-rjserver-spoke-#-to-vnet-prod-rjserver-hub
+            
