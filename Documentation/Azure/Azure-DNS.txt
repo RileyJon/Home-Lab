@@ -1,0 +1,86 @@
+Azure RJServer Configuration
+
+Private DNS (Rjserver.azure)
+
+A Private DNS zone is used internally to resolve DNS queries for VMs and other resources in the Rjserver Tenant
+
+1.) Create Private DNS Zone
+
+    Resource Group: rg-prod-rjserver
+    Name: rjserver.azure
+    
+ 2.) Link to Virtual Networks
+ 
+    vnet-prod-rjserver-hub
+    vnet-prod-rjserver-spoke-2
+    vnet-prod-rjserver-spoke-3
+    vnet-prod-rjserver-spoke-4
+    
+    2a.) Name "X-DNS"
+    
+    2b.) Configuration: Enable Auto registration (Allows for automatic creation of DNS records for VMs
+    
+    
+ 3.) Create DNS Records 
+ 
+    3a.) Go to rjserver.azure resource
+    
+    3b.) Go to Recordsets
+    
+    3c.) Create A, AAAA, CNAME, MX, SRV, TXT, PTR Rcords
+    
+    
+Public DNS (Rjserver.net)
+ 
+A Public DNS Zone can be used for Azure to host your DNS records for a particular public domain. Your domain must be pointed towards Azure's DNS FQDNs
+ 
+ 
+1.) Create Public DNS Zone
+ 
+    Resource Group: rg-prod-rjserver
+    Name: rjserver.net
+ 
+2.) Configure Name Servers in your registrar:
+ 
+    ns1-03.azure-dns.com.
+    ns2-03.azure-dns.net.
+    ns3-03.azure-dns.org.
+    ns4-03.azure-dns.info.
+ 
+3.) Configure Recordsets for Root Zone or Create Child Zones for subdomains 
+ 
+ 
+ 
+DNS Private Resolver
+
+A DNS Private Resolver can be used to bridge on-prem DNS with DNS zones hosted in Azure DNS. On prem networks can do conditinal forwarding to Azure.
+
+1.) Create DNS Private Resolver Resource
+
+    Resource Group: rg-prod-rjserver
+    Name: dns-pr-prod-rjserver
+    
+    Virtual Network: vnet-prod-rjserver-hub
+    
+2.) Inbound Endpoints: Endpoint Name, Subnet, IP address assignment 
+    (This can recieve DNS requests in Azure)
+    
+3.) Outbound Endpoints: Endpoint Name, Subnet
+    (This can forward DNS requests
+    
+4.) Rulsets: Define Condtional forwarding rules for DNS traffic using outbound endpoints
+
+    Rulset Name: On-Prem
+    Endpoints:
+    
+    Rules:
+    
+        Rule-Name: On-Prem
+        Domain Name: rjserver.prem
+        Rule State: Enabled
+        
+        Destination: (On Prem DNS Servers)
+    
+
+
+
