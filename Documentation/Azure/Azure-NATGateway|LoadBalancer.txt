@@ -1,0 +1,78 @@
+Azure RJServer Configuration
+
+NAT Gateway
+
+Azure NAT Gateway is a fully managed, highly resilient service providing secure, scalable outbound internet connectivity for virtual networks. It is used to provide a static, predictable public IP for egress traffic, prevent SNAT port exhaustion, and enhance security by keeping private resources (VMs, containers) hidden from unsolicited inbound internet traffic. 
+
+1.) Create NAT Gateway
+
+    Resource Group: rg-prod-rjserver
+    Name: ngw-prod-rjserver-1
+    SKU: Standard
+    
+    Public IP or Public Prefix
+    Public IP: nat-pip
+    
+    Virtual Networks and Subnets:
+    Vnet: vnet-prod-rjserver-hub
+    Subnet: Clients
+    
+2.) Add VNets and or Subnets if needed
+
+3.) VMs should now use Nat-pip or prefix as egress Public IP address
+ 
+
+Load Balancer
+
+1.) Create Standard Load Balancer
+
+    Resource Group: rg-prod-rjserver
+    Name: lb-prod-rjserver-1
+    SKU: Standard
+    
+    Type: Public or Internal (Public in this example)
+    
+2.) Frontend IP Configuration 
+
+    Name: lb-prod-rjserver-1-FE
+    Public IP: lb-pip
+    
+3.) Backend Pool Configuration 
+
+    Name: lb-prod-rjserver-1-BE
+    Virtual Network: vnet-prod-rjserver-hub
+    
+    Add VM NICs or IPs here
+    
+4.) Configure Load Balancing Inbound Rule
+
+    Name: lb-prod-rjserver-1-IR
+    Frontend IP: lb-pip
+    Backend Pool: lb-prod-rjserver-1-BE
+    
+    Protocol: TCP or UDP
+    Port: ###
+    Backend Port: ###
+    
+    Health Probe:
+        Name: lb-prod-rjserver-1-hp
+        Protocol: TCP or UDP
+        Port: ###
+        Interval: (Seconds)
+        
+    Session Persistence: None
+    Idle Timeout: #
+    
+    Enable TCP Reset: ?
+    Enable Floating IP: ?
+    
+5.) Configure Load Balancing Outbound Rule (If Needed)
+
+    Name: lb-prod-rjserver-1-OR
+    Frontend IP: lb-pip
+    Protocol: All, TCP, or UDP
+    TCP Reset: ?
+    Backend Pool: lb-prod-rjserver-1-BE
+    
+    
+
